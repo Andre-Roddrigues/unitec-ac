@@ -44,28 +44,11 @@ export function WhySubscribe() {
                         data-reveal
                         className="mt-5 text-sm leading-relaxed text-white/85"
                     >
-                        Os alunos da Unitec, por meio da sua formação profissional, conquistam
-                        melhores oportunidades de emprego, ampliam as suas perspectivas de
-                        desenvolvimento de carreira e aumentam significativamente o seu valor no
-                        mercado.
-                    </p>
-                    <p
-                        data-reveal
-                        className="mt-4 text-sm leading-relaxed text-white/75"
-                    >
-                        A formação oferecida pela Unitec não apenas prepara os alunos com
-                        competências técnicas e teóricas de alta qualidade, mas também os capacita
-                        a responder de forma eficaz às exigências e desafios constantes do mercado
-                        de trabalho — tornando-os profissionais altamente competitivos e
-                        requisitados em diversas áreas de actuação.
-                    </p>
-                    <p
-                        data-reveal
-                        className="mt-4 text-sm leading-relaxed text-white/75"
-                    >
-                        Contamos com formadores qualificados, materiais actualizados e um
-                        acompanhamento próximo em cada etapa do percurso. Presencial ou online, o
-                        objectivo é o mesmo: transformar conhecimento em oportunidades reais.
+                        Na Unitec, a formação profissional abre melhores oportunidades de emprego e
+                        aumenta o valor de cada aluno no mercado. Com formadores qualificados,
+                        materiais actualizados e acompanhamento próximo, preparamos profissionais
+                        competitivos, presencial ou online, o objectivo é transformar conhecimento
+                        em oportunidades reais.
                     </p>
                 </div>
 
