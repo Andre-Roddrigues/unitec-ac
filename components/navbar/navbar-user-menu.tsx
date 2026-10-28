@@ -17,7 +17,7 @@ export function NavbarUserMenu({ name }: { name: string }) {
 
   return (
     <div className="flex items-center gap-3">
-      <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white">
+      <Button  variant="ghost" className="text-white hover:bg-white/10 hover:text-white">
         <Link href="/perfil">{name.split(" ")[0] || "Minha conta"}</Link>
       </Button>
       <Button
