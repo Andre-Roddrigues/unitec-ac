@@ -1,5 +1,5 @@
 import { Hero } from "@/components/hero/hero";
-import { HowToSubscribe } from "@/components/sections/how-to-subscribe";
+import {  WhySubscribe } from "@/components/sections/how-to-subscribe";
 import { LanguageCenter } from "@/components/sections/language-center";
 import { JoinOurTeam } from "@/components/sections/join-our-team";
 import { OurPartners } from "@/components/sections/our-partners";
@@ -17,7 +17,6 @@ export default function Page() {
     <>
       {/* <HomeMotion> */}
         <Hero />
-        <HowToSubscribe />
         <ModalidadesFormacao />
         <AreasAprendizagem />
         <BannerLanguageCenter />
@@ -28,7 +27,8 @@ export default function Page() {
         <HomeNewCourses />
         <BannerEquipa />
         {/* <JoinOurTeam />  */}
-        <OurPartners />
+        <WhySubscribe />
+        {/* <OurPartners /> */}
         <UnitecBusiness />
         <AboutUs />
         <Testimonials />
