@@ -1,11 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { CircleUser, Users, ShieldCheck, Play, Search } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { VideoPlayer } from "./Videoplayer";
+import { Users, ShieldCheck, CircleUser, Search } from "lucide-react";
+import { VideoModal, PlayButton } from "./VideoModal";
 
 const indicadores = [
   { icon: CircleUser, label: ["Cursos próprios", "e de parceiros"] },
@@ -14,11 +12,9 @@ const indicadores = [
 ];
 
 export function Hero() {
-  const [videoAberto, setVideoAberto] = useState(false);
-
   return (
-    <section className="relative isolate mt-8 h-screen overflow-hidden bg-primary text-primary-foreground">
-      {/* Imagem de fundo com degradê para dar contraste ao texto */}
+    <section className="relative isolate mt-8 flex h-screen overflow-hidden bg-primary text-primary-foreground">
+      {/* Imagem de fundo com véu uniforme e reforço em baixo, para o texto centrado ler bem */}
       <div className="absolute inset-0 -z-10">
         <Image
           src="/brand/Lizzy.webp"
@@ -26,13 +22,14 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[70%_center]"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--primary)_80%,transparent)_0%,color-mix(in_oklab,var(--primary)_90%,transparent)_100%)]" />
+        <div className="absolute inset-0 bg-primary/75" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_40%,var(--primary)_100%)] opacity-80" />
       </div>
 
-      <div className="container-page flex h-full flex-col items-center justify-center gap-12 py-14 text-center md:gap-16">
-        <div className="flex max-w-2xl flex-col items-center">
+      <div className="container-page flex h-full flex-col items-center justify-center py-14 text-center md:py-16">
+        <div className="flex max-w-3xl flex-col items-center">
           <motion.h1
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -79,16 +76,16 @@ export function Hero() {
           </motion.form>
         </div>
 
-        {/* Indicadores */}
+        {/* Indicadores, centrados em linha */}
         <motion.ul
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid w-full max-w-4xl grid-cols-2 gap-8 md:grid-cols-4 md:gap-6"
+          className="mt-12 grid w-full max-w-4xl grid-cols-2 gap-6 md:grid-cols-4 md:gap-4"
         >
           {indicadores.map(({ icon: Icon, label }) => (
-            <li key={label.join(" ")} className="flex flex-col items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary-foreground/30 bg-primary-foreground/10 backdrop-blur-sm">
+            <li key={label.join(" ")} className="flex items-center justify-center gap-3 text-left">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary-foreground/30 bg-primary-foreground/10 backdrop-blur-sm">
                 <Icon className="h-5 w-5 text-primary-foreground" />
               </span>
               <span className="text-sm leading-tight text-primary-foreground/90">
@@ -99,40 +96,18 @@ export function Hero() {
             </li>
           ))}
 
-          {/* Como se inscrever: abre o vídeo */}
-          <li className="flex flex-col items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setVideoAberto(true)}
-              className="group flex flex-col items-center gap-3 rounded-xl p-1 outline-none focus-visible:ring-2 focus-visible:ring-primary-glow"
+          {/* Como se inscrever: abre o vídeo num modal */}
+          <li className="flex items-center justify-center">
+            <VideoModal
+              titulo="Como se inscrever na Unitec"
+              src="/brand/como-inscrever.mp4"
+              poster="/brand/como-inscrever-poster.webp"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-secondary-foreground shadow-glow transition-transform duration-300 group-hover:scale-110">
-                <Play className="ml-0.5 h-5 w-5 fill-current" />
-              </span>
-              <span className="text-sm leading-tight text-primary-foreground/90 group-hover:text-primary-foreground">
-                Como se inscrever
-                <br />
-                <span className="text-primary-glow">Veja o vídeo</span>
-              </span>
-            </button>
+              <PlayButton label="Como se inscrever" />
+            </VideoModal>
           </li>
         </motion.ul>
       </div>
-
-      {/* Modal com o vídeo */}
-      <Dialog open={videoAberto} onOpenChange={setVideoAberto}>
-        <DialogContent className="max-w-3xl border-0 bg-black p-3 sm:p-4">
-          <DialogTitle className="sr-only">Como se inscrever</DialogTitle>
-          {videoAberto && (
-            <VideoPlayer
-              src="/videos/como-inscrever.mp4"
-              poster="/images/como-inscrever-poster.jpg"
-              autoPlay
-              title="Como se inscrever na Unitec"
-            />
-          )}
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }
