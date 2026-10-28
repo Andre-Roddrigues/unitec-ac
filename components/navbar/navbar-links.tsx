@@ -59,8 +59,8 @@ export function NavbarLinks() {
                   href={link.href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "text-sm font-medium transition-colors",
-                    isActive ? "text-white" : "text-white/70 hover:text-white",
+                    "text-sm font-medium transition-colors font-bold",
+                    isActive ? "text-darkBlue" : "text- hover:text-darkBlue/70",
                   )}
                 >
                   {link.label}
@@ -73,7 +73,7 @@ export function NavbarLinks() {
                     aria-haspopup="menu"
                     aria-expanded={isOpen}
                     onClick={() => setOpenHref(isOpen ? null : link.href)}
-                    className="flex h-5 w-5 items-center justify-center text-white/70 hover:text-white"
+                    className="flex h-5 w-5 items-center justify-center text-darkBlue/70 hover:text-darkBlue"
                   >
                     <ChevronDown
                       className={cn("h-3.5 w-3.5 transition-transform", isOpen && "rotate-180")}
@@ -85,7 +85,7 @@ export function NavbarLinks() {
               {hasChildren && isOpen && (
                 <div
                   role="menu"
-                  className="absolute left-0 top-full z-50 mt-2 min-w-[180px] rounded-lg border border-white/10 bg-[#0A1550] p-1.5 shadow-xl"
+                  className="absolute left-0 top-full z-50 mt-2 min-w-[180px] rounded-lg border border-border bg-white p-1.5 shadow-xl"
                 >
                   {link.children!.map((child) => (
                     <Link
@@ -93,7 +93,7 @@ export function NavbarLinks() {
                       href={child.href}
                       role="menuitem"
                       onClick={() => setOpenHref(null)}
-                      className="block rounded-md px-3 py-2 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                      className="block rounded-md px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-primary"
                     >
                       {child.label}
                     </Link>

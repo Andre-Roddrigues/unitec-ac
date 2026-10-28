@@ -136,7 +136,7 @@ export function Footer() {
       </div>
 
       <div className="relative mx-auto px-6 sm:px-10 lg:px-16 pb-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-6 lg:gap-10">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-6 lg:gap-12">
           {/* Marca */}
           <div className="md:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-3">
