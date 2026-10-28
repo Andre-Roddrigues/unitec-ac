@@ -22,7 +22,7 @@ export default function Page() {
         <BannerLanguageCenter />
         
         {/* <LanguageCenter /> */}
-        <HomeFeaturedCourses />
+        {/* <HomeFeaturedCourses /> */}
         <HomePopularCourses />
         <HomeNewCourses />
         <BannerEquipa />

@@ -128,7 +128,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-t from-darkBlue to-darkBlue/80 text-white pt-14">
+    <footer className="relative overflow-hidden bg-darkBlue text-white pt-14">
       {/* Decoração de fundo */}
       <div className="pointer-events-none absolute inset-0 opacity-30">
         <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-secondary/30 blur-3xl" />
