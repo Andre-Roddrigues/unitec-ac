@@ -17,7 +17,7 @@ export function BannerEquipa() {
   return (
     <section className="bg-background py-10 md:py-14">
       <div className="container-page">
-        <div className="grid overflow-hidden bg-primary rounded-3xl bg-card shadow-elevated md:grid-cols-2">
+        <div className="grid overflow-hidden bg-[linear-gradient(90deg,var(--primary)_0%,color-mix(in_oklab,var(--primary)_52%,transparent)_80%,color-mix(in_oklab,var(--primary)_90%,transparent)_100%)] rounded-3xl bg-card shadow-elevated md:grid-cols-2">
           {/* Texto */}
           <div className="flex flex-col justify-center px-6 py-12 md:px-12 lg:px-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-background">

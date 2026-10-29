@@ -110,7 +110,7 @@ export function Testimonials() {
                         <Image
                             width={960}
                             height={540}
-                            src="/images/be-a-teacher.png"
+                            src="/images/be-a-teacher.jpeg"
                             alt="Depoimento em vídeo"
                             loading="lazy"
                             className="aspect-video w-full object-cover"
