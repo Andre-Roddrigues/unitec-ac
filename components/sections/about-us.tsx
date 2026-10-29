@@ -1,14 +1,15 @@
-import { Award, Briefcase, BookOpen } from "lucide-react";
+import { Award, Briefcase, BookOpen, MonitorPlay } from "lucide-react";
 
 const METRICS = [
     { value: "+5.000", label: "Alunos formados", icon: Award },
     { value: "87%", label: "Taxa de empregabilidade", icon: Briefcase },
-    { value: "+20", label: "Cursos disponíveis", icon: BookOpen },
+    { value: "+20", label: "Cursos Presenciais", icon: BookOpen },
+    { value: "+30", label: "Cursos Online", icon: MonitorPlay },
 ];
 
 export function AboutUs() {
     return (
-        <section className="relative overflow-hidden bg-gradient-primary py-16">
+        <section className="relative overflow-hidden bg-primary py-16">
             <div
                 aria-hidden="true"
                 data-speed="0.8"
@@ -27,7 +28,7 @@ export function AboutUs() {
 
                 <dl
                     data-reveal-group
-                    className="mt-10 grid grid-cols-1 gap-8 text-center sm:grid-cols-3 sm:gap-6"
+                    className="mt-10 grid grid-cols-2 gap-8 text-center sm:gap-6 lg:grid-cols-4"
                 >
                     {METRICS.map(({ value, label, icon: Icon }) => (
                         <div key={label} className="flex flex-col items-center">

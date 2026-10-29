@@ -12,6 +12,7 @@ import { AreasAprendizagem } from "@/components/sections/home/Areasaprendizagem"
 import { BannerLanguageCenter } from "@/components/sections/home/Bannerlanguagecenter";
 import { ModalidadesFormacao } from "@/components/sections/home/Modalidadesformacao";
 import { BannerEquipa } from "@/components/sections/home/Bannerequipa";
+import { CtaProximoPasso } from "@/components/sections/Ctaproximopasso";
 export default function Page() {
   return (
     <>
@@ -25,12 +26,13 @@ export default function Page() {
         {/* <HomeFeaturedCourses /> */}
         <HomePopularCourses />
         <HomeNewCourses />
-        <BannerEquipa />
         {/* <JoinOurTeam />  */}
         <WhySubscribe />
+        <BannerEquipa />
         {/* <OurPartners /> */}
-        <UnitecBusiness />
         <AboutUs />
+        <UnitecBusiness />
+        <CtaProximoPasso />
         <Testimonials />
       {/* </HomeMotion> */}
     </>
