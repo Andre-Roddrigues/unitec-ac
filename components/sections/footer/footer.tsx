@@ -141,10 +141,10 @@ export function Footer() {
           <div className="md:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-3">
               <Image
-                src="/brand/ICON_ACADEMY.png"
+                src="/images/footeruni.png"
                 alt="Unitec Pro"
-                width={56}
-                height={56}
+                width={156}
+                height={156}
               />
               <div>
                 <p className="mt-1 text-xs text-white/70">
