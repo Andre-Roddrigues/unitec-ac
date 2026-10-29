@@ -79,13 +79,13 @@ const ecosystem = [
   { label: "Professional", href: "https://pro.unitec.co.mz" },
   { label: "Business", href: "https://business.unitec.co.mz" },
   { label: "Market", href: "https://market.unitec.co.mz" },
-  { label: "Sobre-nós", href: "https://unitec.co.mz/sobre-nos" },
+  { label: "Sobre nós", href: "https://unitec.co.mz/sobre-nos" },
 ];
 
 const contacts = [
   { icon: MapPin, text: "Av. Marien Ngouabi Nº 49, Maputo, Moçambique", href: undefined },
   { icon: Phone, text: "870088787 | 834303184", href: "tel:+258870088787" },
-  { icon: Mail, text: "hello@unitec.co.mz", href: "mailto:hello@unitec.co.mz" },
+  { icon: Mail, text: "info@unitec.ac.mz", href: "mailto:info@unitec.ac.mz" },
 ];
 
 const socials = [
@@ -147,9 +147,6 @@ export function Footer() {
                 height={156}
               />
               <div>
-                <p className="mt-1 text-xs text-white/70">
-                  Profissionais. Serviços. Oportunidades.
-                </p>
               </div>
             </div>
 

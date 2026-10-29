@@ -6,13 +6,13 @@ export function NavbarLogo() {
     <Link
       href="/"
       aria-label="Página inicial"
-      className="flex h-10 w-10 items-center justify-center transition-opacity hover:opacity-85"
+      className="flex  items-center justify-center transition-opacity hover:opacity-85"
     >
       <Image
-        src="/brand/ICON_ACADEMY.png"
+        src="/images/academyhd.png"
         alt="Logótipo Unitec Academy"
-        width={40}
-        height={40}
+        width={70}
+        height={70}
         className="h-full w-full object-contain"
         priority
       />

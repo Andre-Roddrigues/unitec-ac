@@ -43,7 +43,7 @@ export function CtaProximoPasso() {
             </h2>
 
             <p className="mt-4 max-w-xl text-base leading-relaxed text-primary-foreground/85 md:text-lg">
-              Escolha o curso que mais se adequa aos seus objetivos e dê o primeiro
+              Escolha o curso que mais se adequa aos seus objectivos e dê o primeiro
               passo para uma carreira com mais competências e mais oportunidades.
             </p>
 
