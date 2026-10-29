@@ -29,20 +29,20 @@ const BENEFITS = [
 
 export function WhySubscribe() {
     return (
-        <section className="bg-primary ">
-            <div className="container-page space-y-10 py-20">
-                {/* Cabeçalho + texto */}
-                <div className="mx-auto max-w-3xl text-center">
+        <section className="bg-darkBlue">
+            <div className="container-page space-y-12 py-20">
+                {/* Cabeçalho em duas colunas: título à esquerda, texto à direita */}
+                <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
                     <h2
                         data-split
-                        className="text-2xl font-extrabold tracking-tight text-white lg:text-3xl"
+                        className="text-4xl font-extrabold tracking-tight text-white lg:text-5xl"
                     >
                         Porquê se inscrever na{" "}
                         <span className="text-primary-glow">Unitec</span>
                     </h2>
                     <p
                         data-reveal
-                        className="mt-5 text-sm leading-relaxed text-white/85"
+                        className="text-sm leading-relaxed text-white/85 lg:border-l lg:border-white/15 lg:pl-8"
                     >
                         Na Unitec, a formação profissional abre melhores oportunidades de emprego e
                         aumenta o valor de cada aluno no mercado. Com formadores qualificados,

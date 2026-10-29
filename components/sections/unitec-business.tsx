@@ -66,8 +66,8 @@ export function UnitecBusiness() {
     <section className="bg-background py-16 md:py-20">
       <div className="container-page">
         {/* Cabeçalho */}
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center container-page py-6 md:py-8 rounded-3xl bg-card shadow-elevated">
+          <div className="">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
               Unitec Business
             </p>

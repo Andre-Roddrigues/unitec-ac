@@ -16,7 +16,7 @@ import {
 import type { CourseContent, CourseWithRelations, Paginated } from '@/types';
 
 /** A home mostra 4 cursos por secção — pedir só esses. */
-const HOME_SECTION_SIZE = 4;
+const HOME_SECTION_SIZE = 8;
 
 const COURSES_CACHE = { tags: [PUBLIC_CACHE_TAGS.courses] };
 

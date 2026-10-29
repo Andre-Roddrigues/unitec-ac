@@ -1,7 +1,9 @@
+import { Award, Briefcase, BookOpen } from "lucide-react";
+
 const METRICS = [
-    { value: "+5.000", label: "Alunos formados" },
-    { value: "87%", label: "Taxa de empregabilidade" },
-    { value: "+20", label: "Cursos disponíveis" },
+    { value: "+5.000", label: "Alunos formados", icon: Award },
+    { value: "87%", label: "Taxa de empregabilidade", icon: Briefcase },
+    { value: "+20", label: "Cursos disponíveis", icon: BookOpen },
 ];
 
 export function AboutUs() {
@@ -27,8 +29,11 @@ export function AboutUs() {
                     data-reveal-group
                     className="mt-10 grid grid-cols-1 gap-8 text-center sm:grid-cols-3 sm:gap-6"
                 >
-                    {METRICS.map(({ value, label }) => (
-                        <div key={label}>
+                    {METRICS.map(({ value, label, icon: Icon }) => (
+                        <div key={label} className="flex flex-col items-center">
+                            <span className="mb-3 grid size-12 place-items-center rounded-full bg-primary-foreground/10 text-primary-foreground ring-1 ring-primary-foreground/20">
+                                <Icon className="size-6" strokeWidth={1.75} />
+                            </span>
                             <dd className="text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl">
                                 {value}
                             </dd>
