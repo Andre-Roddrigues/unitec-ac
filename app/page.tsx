@@ -13,6 +13,7 @@ import { BannerLanguageCenter } from "@/components/sections/home/Bannerlanguagec
 import { ModalidadesFormacao } from "@/components/sections/home/Modalidadesformacao";
 import { BannerEquipa } from "@/components/sections/home/Bannerequipa";
 import { CtaProximoPasso } from "@/components/sections/Ctaproximopasso";
+import { CtaFinal } from "@/components/sections/home/CtaFinal";
 export default function Page() {
   return (
     <>
@@ -34,6 +35,7 @@ export default function Page() {
         <UnitecBusiness />
         <CtaProximoPasso />
         <Testimonials />
+        <CtaFinal />
       {/* </HomeMotion> */}
     </>
   );

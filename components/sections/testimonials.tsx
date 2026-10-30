@@ -86,6 +86,9 @@ export function Testimonials() {
                         <h2 data-split className="mt-5 text-3xl font-extrabold tracking-tight sm:text-5xl">
                             O que os nossos <span className="text-gradient">alunos dizem</span>
                         </h2>
+                        <p data-split className="py-2 text-sm text-midnight">
+                           Conheça a experiência de quem escolheu a Unitec Academy para desenvolver novas competências.
+                        </p>
 
                         {/* Setas */}
                         <div className="mt-6 flex items-center gap-2">

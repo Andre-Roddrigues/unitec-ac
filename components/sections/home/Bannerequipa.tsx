@@ -20,24 +20,20 @@ export function BannerEquipa() {
         <div className="grid overflow-hidden bg-background rounded-3xl bg-card shadow-elevated md:grid-cols-2">
           {/* Texto */}
           <div className="flex flex-col justify-center px-6 py-12 md:px-12 lg:px-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Junte-se a nós
-            </p>
 
             <h2 className="mt-3 text-3xl font-extrabold leading-tight text-primary md:text-4xl">
-              Faça parte da nossa equipa
+              Partilhe o seu conhecimento. Chegue a mais pessoas.
             </h2>
 
             <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
-              Procuramos formadores e profissionais apaixonados por ensinar e por
-              transformar vidas através da formação. Candidate-se e cresça connosco.
+              É formador ou representa uma instituição de formação? Publique os seus cursos na Unitec Academy e ajude mais pessoas a desenvolver competências e a descobrir novas oportunidades
             </p>
 
             <Link
-              href="/carreiras"
+              href="https://partner.unitec.co.mz"
               className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-secondary-foreground shadow-glow transition-colors hover:bg-secondary/90"
             >
-              Candidate-se
+              Ensinar na Unitec Academy →
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

@@ -44,12 +44,11 @@ export function BannerLanguageCenter() {
             </p>
 
             <h2 className="mt-3 max-w-lg text-3xl font-extrabold leading-[1.1] md:text-4xl lg:text-5xl">
-              Aprenda um novo idioma.
+              Novos idiomas. Novas oportunidades.
             </h2>
 
             <p className="mt-4 max-w-md text-sm text-primary-foreground/85 md:text-base">
-              Cursos de idiomas da Unitec e de formadores parceiros, com opções
-              presenciais, online e ao domicílio.
+              Aprenda inglês, francês, mandarim e outros idiomas com opções de formação adaptadas aos seus objectivos, à sua disponibilidade e à modalidade que prefere.
             </p>
 
             {/* Lista de idiomas */}
@@ -80,7 +79,7 @@ export function BannerLanguageCenter() {
               href="/idiomas"
               className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-secondary-foreground shadow-glow transition-colors hover:bg-secondary/90"
             >
-              Explorar idiomas
+               Explorar cursos de idiomas
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

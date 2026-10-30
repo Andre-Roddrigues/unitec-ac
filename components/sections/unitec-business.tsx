@@ -55,10 +55,10 @@ const beneficios = [
 ];
 
 const pontos = [
-  "Diagnóstico de necessidades de formação",
-  "Planeamento de calendário e carga horária",
-  "Certificação dos participantes",
-  "Relatório final de competências",
+  "Programas adaptados às necessidades da organização.",
+  "Formação nas instalações da empresa ou da Unitec Academy",
+  "Planeamento de horários e cargas horárias",
+  "Acompanhamento e avaliação da formação",
 ];
 
 export function UnitecBusiness() {
@@ -74,11 +74,10 @@ export function UnitecBusiness() {
       Unitec Business
     </p>
     <h2 className="mt-3 text-3xl font-extrabold leading-tight text-background md:text-4xl">
-      Formação à medida para as equipas da sua organização
+      Desenvolva o talento da sua equipa.
     </h2>
     <p className="mt-4 text-base leading-relaxed text-background/80 md:text-lg">
-      Desenhamos programas de formação à medida para organizações que querem
-      desenvolver as suas equipas, no local de trabalho ou nas nossas instalações.
+      Formação profissional adaptada às necessidades da sua organização. Desenvolva competências, prepare os seus colaboradores e invista no crescimento da sua equipa.
     </p>
 
     <ul className="mt-6 space-y-3">
@@ -95,7 +94,7 @@ export function UnitecBusiness() {
         href="https://business.unitec.co.mz"
         className="inline-flex items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-secondary-foreground shadow-glow transition-colors hover:bg-secondary/90"
       >
-        Saiba mais
+         Solicitar formação empresarial
         <ArrowRight className="h-4 w-4" />
       </Link>
     </div>

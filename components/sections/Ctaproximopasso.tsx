@@ -52,7 +52,7 @@ export function CtaProximoPasso() {
                 href="/cursos"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-secondary px-7 py-3.5 text-sm font-semibold text-secondary-foreground shadow-elevated transition-all hover:-translate-y-0.5 hover:bg-secondary/90"
               >
-                Explorar cursos
+                Iniciar a inscrição
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

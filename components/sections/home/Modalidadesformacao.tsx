@@ -15,7 +15,7 @@ const modalidades = [
   {
     titulo: "Cursos Presenciais",
     descricao:
-      "Aprenda na prática e desenvolva competências para o mercado de trabalho.",
+      "Aprenda na prática, desenvolva competências profissionais e prepare-se para os desafios reais do mercado de trabalho.",
     href: "/cursos?modalidade=presencial",
     imagem: "/brand/presencial.jpg",
     alt: "Formandos a trabalhar em grupo numa sala de formação",
@@ -24,7 +24,7 @@ const modalidades = [
   },
   {
     titulo: "Cursos Online",
-    descricao: "Aprenda onde estiver, ao seu ritmo, com formadores especializados.",
+    descricao: "Aprenda a partir de qualquer lugar, desenvolva novas competências e invista no seu futuro com mais flexibilidade.",
     href: "/cursos?modalidade=online",
     imagem: "/brand/online.jpg",
     alt: "Estudante a usar portátil e auscultadores",

@@ -60,8 +60,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 max-w-md text-base text-primary-foreground/85 md:text-lg"
           >
-            Cursos que transformam o seu potencial em competências reais para o
-            mercado de trabalho.
+            Adquira novas competências, aprenda com especialistas e prepare-se para novas oportunidades profissionais.
           </motion.p>
 
           {/* Barra de pesquisa */}

@@ -22,7 +22,7 @@ export function AboutUs() {
                         data-split
                         className="text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl"
                     >
-                        A Unitec em números
+                        A Unitec Academy em números
                     </h2>
                 </div>
 

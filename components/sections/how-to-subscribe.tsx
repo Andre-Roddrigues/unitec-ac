@@ -3,27 +3,27 @@ import { Award, BadgeCheck, GraduationCap, TrendingUp } from "lucide-react";
 const BENEFITS = [
     {
         icon: GraduationCap,
-        title: "Processo de admissão",
+        title: "Aprenda com especialistas",
         description:
-            "Um processo simples e rápido: escolha o curso, faça a inscrição e comece a sua formação sem burocracia.",
+            "Desenvolva competências com formadores que partilham conhecimentos e experiência nas suas áreas.",
     },
     {
         icon: BadgeCheck,
-        title: "Certificado Profissional",
+        title: "Escolha como aprender",
         description:
-            "No final da formação recebe um certificado reconhecido que valoriza o seu percurso profissional.",
+            "Descubra cursos presenciais e online, de acordo com os seus objectivos e a disponibilidade de cada formação.",
     },
     {
         icon: TrendingUp,
-        title: "Desenvolvimento Profissional",
+        title: "Invista no seu desenvolvimento",
         description:
-            "Competências práticas e actualizadas que o preparam para os desafios reais do mercado de trabalho.",
+            "Adquira conhecimentos que pode aplicar no trabalho, nos estudos ou no seu próprio negócio.",
     },
     {
         icon: Award,
-        title: "Professores Qualificados",
+        title: "Encontre a sua próxima oportunidade",
         description:
-            "Formadores com experiência de terreno, dedicados a acompanhar cada estudante ao longo do curso.",
+            "Explore diferentes áreas de formação e descubra novos caminhos para o seu crescimento profissional.",
     },
 ];
 
@@ -35,20 +35,18 @@ export function WhySubscribe() {
                 <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
                     <h2
                         data-split
-                        className="text-4xl font-extrabold tracking-tight text-white lg:text-5xl"
+                        className="text-3xl font-extrabold tracking-tight text-white lg:text-4xl"
                     >
-                        Porquê se inscrever na{" "}
-                        <span className="text-primary-glow">Unitec</span>
+                        Mais conhecimento. Mais competências.{" "}
+                        <span className="text-primary-glow">Mais oportunidades.</span>
                     </h2>
                     <p
                         data-reveal
                         className="text-sm leading-relaxed text-white/85 lg:border-l lg:border-white/15 lg:pl-8"
                     >
-                        Na Unitec, a formação profissional abre melhores oportunidades de emprego e
-                        aumenta o valor de cada aluno no mercado. Com formadores qualificados,
-                        materiais actualizados e acompanhamento próximo, preparamos profissionais
-                        competitivos, presencial ou online, o objectivo é transformar conhecimento
-                        em oportunidades reais.
+                        Na Unitec Academy, encontra formação para desenvolver competências,
+                        explorar novas áreas e preparar-se para os próximos passos da sua vida
+                        profissional.
                     </p>
                 </div>
 

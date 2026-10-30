@@ -75,10 +75,10 @@ export function AreasAprendizagem() {
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-background md:text-3xl">
-              Áreas de aprendizagem
+              Encontre a formação certa para si
             </h2>
             <p className="mt-1.5 text-sm text-background/80">
-              Explore as principais áreas de formação e encontre o curso certo para si.
+              Explore cursos em diferentes áreas e descubra novas competências para a sua carreira, os seus projectos ou o seu negócio.
             </p>
           </div>
 
