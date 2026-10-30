@@ -1,8 +1,8 @@
 import { Award, Briefcase, BookOpen, MonitorPlay } from "lucide-react";
 
 const METRICS = [
-    { value: "+5.000", label: "Alunos formados", icon: Award },
-    { value: "87%", label: "Taxa de empregabilidade", icon: Briefcase },
+    { value: "+10.000", label: "Alunos formados", icon: Award },
+    { value: "+10", label: "Áreas de aprendizagem", icon: Briefcase },
     { value: "+20", label: "Cursos Presenciais", icon: BookOpen },
     { value: "+30", label: "Cursos Online", icon: MonitorPlay },
 ];

@@ -67,50 +67,50 @@ export function UnitecBusiness() {
       <div className="container-page">
         {/* Cabeçalho */}
         {/* Cabeçalho */}
-<div className="grid bg-darkBlue overflow-hidden rounded-3xl bg-card shadow-elevated lg:grid-cols-2">
-  {/* Texto */}
-  <div className="flex flex-col justify-center px-6 py-12 md:px-10 lg:px-12">
-    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-background">
-      Unitec Business
-    </p>
-    <h2 className="mt-3 text-3xl font-extrabold leading-tight text-background md:text-4xl">
-      Desenvolva o talento da sua equipa.
-    </h2>
-    <p className="mt-4 text-base leading-relaxed text-background/80 md:text-lg">
-      Formação profissional adaptada às necessidades da sua organização. Desenvolva competências, prepare os seus colaboradores e invista no crescimento da sua equipa.
-    </p>
+        <div className="grid bg-darkBlue overflow-hidden rounded-3xl bg-card shadow-elevated lg:grid-cols-2">
+          {/* Texto */}
+          <div className="flex flex-col justify-center px-6 py-12 md:px-10 lg:px-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-background">
+              Unitec Business
+            </p>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-background md:text-4xl">
+              Desenvolva o talento da sua equipa.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-background/80 md:text-lg">
+              Formação profissional adaptada às necessidades da sua organização. Desenvolva competências, prepare os seus colaboradores e invista no crescimento da sua equipa.
+            </p>
 
-    <ul className="mt-6 space-y-3">
-      {pontos.map((ponto) => (
-        <li key={ponto} className="flex items-start gap-3 text-sm text-background/80 md:text-base">
-          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-success" />
-          {ponto}
-        </li>
-      ))}
-    </ul>
+            <ul className="mt-6 space-y-3">
+              {pontos.map((ponto) => (
+                <li key={ponto} className="flex items-start gap-3 text-sm text-background/80 md:text-base">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-success" />
+                  {ponto}
+                </li>
+              ))}
+            </ul>
 
-    <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-      <Link
-        href="https://business.unitec.co.mz"
-        className="inline-flex items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-secondary-foreground shadow-glow transition-colors hover:bg-secondary/90"
-      >
-         Solicitar formação empresarial
-        <ArrowRight className="h-4 w-4" />
-      </Link>
-    </div>
-  </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Link
+                href="https://business.unitec.co.mz"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-secondary-foreground shadow-glow transition-colors hover:bg-secondary/90"
+              >
+                Solicitar formação empresarial
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
 
-  {/* Imagem — preenche de ponta a ponta a coluna que ocupa */}
-  <div className="relative min-h-[300px] lg:min-h-[480px]">
-    <Image
-      src="/images/small-business-mentoring.webp"
-      alt="Formação de equipa numa empresa"
-      fill
-      sizes="(min-width: 1024px) 50vw, 100vw"
-      className="object-cover"
-    />
-  </div>
-</div>
+          {/* Imagem — preenche de ponta a ponta a coluna que ocupa */}
+          <div className="relative min-h-[300px] lg:min-h-[480px]">
+            <Image
+              src="/images/small-business-mentoring.png"
+              alt="Formação de equipa numa empresa"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
 
         {/* Modalidades */}
         <div className="mt-16">

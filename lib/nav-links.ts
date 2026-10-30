@@ -16,12 +16,18 @@ export const navLinks: NavLink[] = [
     label: "Cursos",
     href: "/cursos",
     children: [
-      { label: "Online", href: "/cursos-online" },
-      { label: "Presencial", href: "/cursos-presenciais" },
+      { label: "Online", href: "/cursos" },
+      { label: "Presencial", href: "/presenciais" },
     ],
   },
-  { label: "Language Center", href: "/language-center" },
-  { label: "Bpartner", href: "/bpartner" },
-  { label: "Suporte", href: "/suporte" },
-  { label: "Perfil", href: "/perfil" },
+  { label: "Language", href: "/language" },
+  { label: "Business", href: "https://business.unitec.co.mz" },
+  {
+    label: "Suporte",
+    href: "/", 
+    children: [
+      { label: "FAQ", href: "https://unitec.co.mz/faq" },
+      { label: "Assistência", href: "https://unitec.co.mz/assistencia" },
+    ],
+  },
 ];

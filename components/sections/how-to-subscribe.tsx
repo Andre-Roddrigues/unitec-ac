@@ -37,8 +37,9 @@ export function WhySubscribe() {
                         data-split
                         className="text-3xl font-extrabold tracking-tight text-white lg:text-4xl"
                     >
-                        Mais conhecimento. Mais competências.{" "}
-                        <span className="text-primary-glow">Mais oportunidades.</span>
+                        <span className="block">Mais conhecimento.</span>
+                        <span className="block">Mais competências.</span>
+                        <span className="block text-primary-glow">Mais oportunidades.</span>
                     </h2>
                     <p
                         data-reveal

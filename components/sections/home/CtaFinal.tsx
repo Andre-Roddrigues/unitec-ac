@@ -10,11 +10,10 @@ export function CtaFinal() {
           {/* Texto */}
           <div className="max-w-2xl">
             <h2 className="mt-4 text-2xl font-extrabold leading-tight md:text-3xl lg:text-4xl">
-              O seu próximo passo começa com uma escolha.
+              Faça a sua escolha hoje e transforme o seu futuro
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-primary-foreground/85 md:text-base">
-              Descubra o curso ideal para os seus objectivos e comece hoje a investir
-              no seu desenvolvimento.
+              Invista no seu pontencial, desenvolva novas competências e prepare-se para novas oportunidades.
             </p>
           </div>
 

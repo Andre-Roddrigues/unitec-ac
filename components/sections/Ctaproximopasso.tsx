@@ -9,7 +9,7 @@ const garantias = [
 
 export function CtaProximoPasso() {
   return (
-    <section className="relative isolate overflow-hidden bg-primary py-16 text-primary-foreground md:py-24">
+    <section className="relative isolate overflow-hidden bg-primary py-16 text-primary-foreground md:py-20">
       {/* Elementos decorativos (opcionais, já estavam comentados) */}
       {/* <div
         className="pointer-events-none absolute -right-20 -top-20 -z-10 h-80 w-80 rounded-full bg-primary-glow/30 blur-3xl"
@@ -25,7 +25,7 @@ export function CtaProximoPasso() {
       /> */}
 
       {/* Conteúdo centrado, mas o fundo vai de ponta a ponta */}
-      <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-16">
+      <div className="mx-auto w-full max-w-7xl px-6">
         <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
           {/* Texto e ações */}
           <div>

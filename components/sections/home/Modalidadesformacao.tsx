@@ -47,13 +47,6 @@ export function ModalidadesFormacao() {
               Formação para todas as suas metas
             </h2>
           </div>
-          <Link
-            href="/cursos"
-            className="hidden shrink-0 items-center gap-1.5 text-sm font-semibold text-secondary transition-colors hover:text-primary sm:inline-flex"
-          >
-            Ver todos os cursos
-            <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
 
         {/* Cartões */}

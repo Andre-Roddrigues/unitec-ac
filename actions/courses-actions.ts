@@ -13,7 +13,7 @@ import {
   type CatalogPrice,
   type CatalogSort,
 } from '@/lib/catalog';
-import type { CourseContent, CourseWithRelations, Paginated } from '@/types';
+import type { Category, CourseContent, CourseWithRelations, Paginated } from '@/types';
 
 /** A home mostra 4 cursos por secção — pedir só esses. */
 const HOME_SECTION_SIZE = 8;
@@ -167,4 +167,21 @@ export async function getRelatedCourses(
   } catch {
     return { success: false, message: 'Erro ao carregar cursos relacionados' };
   }
+}
+
+/** Todas as categorias — usada por filtros e pela página de idiomas. */
+export async function getCategories(): Promise<ActionResponse<Category[]>> {
+  try {
+    return await apiGetPublic<Category[]>('/categories', {
+      tags: [PUBLIC_CACHE_TAGS.categories],
+    });
+  } catch {
+    return { success: false, message: 'Erro ao carregar as categorias' };
+  }
+}
+
+export async function getLanguageCategoryId(): Promise<string | null> {
+  const result = await getCategories();
+  if (!result.success || !result.data) return null;
+  return result.data.find((c) => c.slug === 'idiomas')?.id ?? null;
 }
