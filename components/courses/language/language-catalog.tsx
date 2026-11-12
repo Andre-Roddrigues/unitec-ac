@@ -91,14 +91,15 @@ export default function LanguageCatalog({
   const entry = entries[key];
   const hasEntry = entry !== undefined;
 
-  useEffect(() => {
+    useEffect(() => {
     const at = fetchedAt.current.get(key);
     if (hasEntry && at !== undefined && Date.now() - at < CACHE_TTL_MS) return;
 
     const controller = new AbortController();
-    // Chama o teu endpoint real. Ajusta o URL se for diferente.
+    
+    // ✅ Forçamos o categoryId e adicionamos o price que faltava
     const params = new URLSearchParams({
-      categoryId,
+      categoryId, // O ID da categoria "idiomas" vindo do servidor
       perPage: String(COURSES_PER_PAGE),
       page: String(filters.page),
       ...(filters.search && { search: filters.search }),
@@ -106,12 +107,37 @@ export default function LanguageCatalog({
       ...(filters.sort && { sort: filters.sort }),
     });
 
+    // Adicionar filtro de preço se não for "all"
+    // Nota: O backend espera minPrice/maxPrice, não a string "price".
+    // Se a API `/api/courses` aceitar o parâmetro `price`, mantém. Caso contrário, terás de mapear.
+    // Assumindo que a API aceita `price` como string (ex: "0-50", "50-100"):
+    if (filters.price && filters.price !== "all") {
+      params.set("price", filters.price);
+    }
+
     fetch(`/api/courses?${params.toString()}`, { signal: controller.signal })
       .then((r) => r.json() as Promise<ActionResponse<CatalogPage>>)
       .then((result) => {
         if (!result.success || !result.data) throw new Error(result.message);
+        
+        // ✅ FILTRO DE SEGURANÇA NO CLIENTE
+        // Garante que apenas cursos desta categoria (idiomas) são exibidos,
+        // mesmo que a API retorne dados de outras categorias por engano.
+        const filteredItems = result.data.items.filter(
+          (course) => 
+            course.categoryId === categoryId || 
+            (course.category && course.category.id === categoryId)
+        );
+
+        // Atualizar os dados com os itens filtrados e o total correto
+        const safeData = {
+          ...result.data,
+          items: filteredItems,
+          total: filteredItems.length, // Ou result.data.total se confiares no backend
+        };
+
         fetchedAt.current.set(key, Date.now());
-        setEntries((prev) => ({ ...prev, [key]: result.data! }));
+        setEntries((prev) => ({ ...prev, [key]: safeData }));
       })
       .catch(() => {
         if (controller.signal.aborted) return;

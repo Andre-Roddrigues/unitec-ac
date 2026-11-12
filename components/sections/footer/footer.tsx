@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef, type SVGProps } from "react";
 import { Mail, MapPin, Phone, Send, ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname } from "next/navigation"; // ✅ Importação adicionada
 
 // Importações do Modal e das Imagens de Pagamento
 import mpesaLogo from "@/public/images/payments/Mpesalogo.png";
@@ -116,6 +117,10 @@ const linkColumns = [
 export function Footer() {
   const year = new Date().getFullYear();
   const socialScrollRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname(); // ✅ Hook para detetar a página
+  
+  // ✅ Verifica se está na página de language
+  const isLanguagePage = pathname?.startsWith("/language");
 
   const scrollSocials = (direction: "left" | "right") => {
     if (socialScrollRef.current) {
@@ -141,8 +146,9 @@ export function Footer() {
           <div className="md:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-3">
               <Image
-                src="/images/footeruni.png"
-                alt="Unitec Pro"
+                // ✅ Troca a imagem com base na rota
+                src={isLanguagePage ? "/images/languagefoot.png" : "/images/footeruni.png"}
+                alt={isLanguagePage ? "Unitec Language" : "Unitec Pro"}
                 width={156}
                 height={156}
               />
@@ -151,7 +157,12 @@ export function Footer() {
             </div>
 
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/70">
-              A Unitec Academy é a plataforma de formação profissional que conecta estudantes, profissionais e empresas, oferecendo cursos de alta qualidade para impulsionar carreiras e negócios.
+              {/* ✅ Troca o texto com base na rota */}
+              {isLanguagePage ? (
+                "A Unitec Language Center é a plataforma dedicada ao ensino de idiomas, conectando alunos e profissionais ao mundo através de cursos de línguas de alta qualidade, presenciais e online."
+              ) : (
+                "A Unitec Academy é a plataforma de formação profissional que conecta estudantes, profissionais e empresas, oferecendo cursos de alta qualidade para impulsionar carreiras e negócios."
+              )}
             </p>
 
             {/* Pagamentos */}
@@ -271,15 +282,17 @@ export function Footer() {
             {/* Esquerda: marca */}
             <div className="flex items-center gap-4 w-full xl:w-auto justify-center xl:justify-start">
               <Image
-                src="/images/unitecfooter.png"
-                alt="Unitec Pro"
+                // ✅ Troca a imagem menor com base na rota
+                src={isLanguagePage ? "/images/unitecfooter.png" : "/images/unitecfooter.png"}
+                alt={isLanguagePage ? "Unitec Language" : "Unitec Academy"}
                 width={150}
                 height={150}
                 className="h-10 w-auto"
               />
               <span className="hidden h-6 w-px bg-white/15 sm:block" />
               <span className="hidden text-xs font-semibold uppercase tracking-[0.2em] text-white/60 sm:block">
-                Conectando o presente ao futuro
+                {/* ✅ Troca o slogan com base na rota */}
+                {isLanguagePage ? "Conectando o presente ao futuro" : "Conectando o presente ao futuro"}
               </span>
             </div>
 

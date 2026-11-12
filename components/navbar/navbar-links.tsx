@@ -13,6 +13,8 @@ export function NavbarLinks() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const containerRef = useRef<HTMLUListElement>(null);
 
+  const isLanguagePage = pathname?.startsWith("/language");
+
   // Fecha ao clicar fora
   useEffect(() => {
     if (!openHref) return;
@@ -39,10 +41,19 @@ export function NavbarLinks() {
     closeTimer.current = setTimeout(() => setOpenHref(null), 120);
   };
 
+  // Lógica para trocar o link "Language" por "Academy"
+  const displayedLinks = navLinks.map((link) => {
+    // Se estamos em /language e o link atual é o da Language...
+    if (isLanguagePage && link.label.toLowerCase().includes("language")) {
+      return { ...link, label: "Academy", href: "/" };
+    }
+    return link;
+  });
+
   return (
     <nav aria-label="Navegação principal" className="hidden md:block">
       <ul ref={containerRef} className="flex items-center gap-8">
-        {navLinks.map((link) => {
+        {displayedLinks.map((link) => {
           const isActive = isNavLinkActive(link.href, pathname);
           const hasChildren = Boolean(link.children?.length);
           const isOpen = openHref === link.href;
