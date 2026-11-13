@@ -147,7 +147,7 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <Image
                 // ✅ Troca a imagem com base na rota
-                src={isLanguagePage ? "/images/languagefoot.png" : "/images/footeruni.png"}
+                src={isLanguagePage ? "/images/langfooter.png" : "/images/footeruni.png"}
                 alt={isLanguagePage ? "Unitec Language" : "Unitec Pro"}
                 width={156}
                 height={156}
