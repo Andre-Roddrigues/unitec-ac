@@ -15,7 +15,7 @@ export function NavbarLogo() {
       className="flex items-center justify-center transition-opacity hover:opacity-85"
     >
       <Image
-        src={isLanguage ? "/images/unitec_languagehd.png" : "/images/academyhd.png"}
+        src={isLanguage ? "/images/uniteclanguagehd.png" : "/images/academyhd.png"}
         alt={
           isLanguage
             ? "Logótipo Unitec Language Center"
