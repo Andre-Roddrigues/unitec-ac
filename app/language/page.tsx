@@ -4,7 +4,7 @@ import { LanguageHero } from "@/components/courses/language/language-hero";
 import LanguageCatalog from "@/components/courses/language/language-catalog";
 
 export const metadata = {
-  title: "Unitec Language Center | Cursos de Línguas",
+  title: "Unitec Language | Cursos de Línguas",
   description: "Aprenda inglês, francês, mandarim e outros idiomas.",
 };
 

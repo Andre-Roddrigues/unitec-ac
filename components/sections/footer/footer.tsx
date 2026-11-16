@@ -159,9 +159,9 @@ export function Footer() {
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/70">
               {/* ✅ Troca o texto com base na rota */}
               {isLanguagePage ? (
-                "A Unitec Language Center é a plataforma dedicada ao ensino de idiomas, conectando alunos e profissionais ao mundo através de cursos de línguas de alta qualidade, presenciais e online."
+                "A Unitec Language é uma plataforma dedicada ao ensino de idiomas, conectando alunos e profissionais ao mundo através de cursos de línguas de alta qualidade, presenciais e online."
               ) : (
-                "A Unitec Academy é a plataforma de formação profissional que conecta estudantes, profissionais e empresas, oferecendo cursos de alta qualidade para impulsionar carreiras e negócios."
+                "A Unitec Academy é uma plataforma de formação profissional que conecta estudantes, profissionais e empresas, oferecendo cursos de alta qualidade para impulsionar carreiras e negócios."
               )}
             </p>
 
