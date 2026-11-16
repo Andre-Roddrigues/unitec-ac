@@ -7,9 +7,9 @@ import { catalogQueryString, parseCatalogParams, toGetCoursesFilters } from "@/l
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Cursos | Unitec Academy",
+    title: "Cursos Online | Unitec Academy",
     description:
-        "Explore o catálogo completo de cursos profissionais da Unitec Academy. Formação prática em Administração, Informática, Saúde e mais.",
+        "Explore o catálogo completo de cursos online da Unitec Academy. Formação prática em Administração, Informática, Saúde e mais.",
 };
 
 interface CoursesPageProps {
@@ -17,18 +17,12 @@ interface CoursesPageProps {
         search?: string;
         category?: string;
         level?: string;
-        format?: string;
         price?: string;
         page?: string;
         sort?: string;
     }>;
 }
 
-/**
- * O esqueleto entra logo e o catálogo chega em streaming. É um `<Suspense>`
- * aqui e não um `loading.tsx` na pasta porque esse também cobriria
- * `/cursos/[slug]` — abrir um curso mostraria o esqueleto do catálogo.
- */
 export default function CoursesPage({ searchParams }: CoursesPageProps) {
     return (
         <Suspense
@@ -47,11 +41,12 @@ export default function CoursesPage({ searchParams }: CoursesPageProps) {
 async function CoursesCatalog({ searchParams }: CoursesPageProps) {
     const params = await searchParams;
     const filters = parseCatalogParams((key) => params[key as keyof typeof params]);
+    
+    // ✅ Forçar sempre o formato ONLINE
+    const forcedFilters = { ...filters, format: "ONLINE" as const };
 
-    // Só a primeira resposta vem daqui: as mudanças de filtro seguintes são
-    // pedidas pelo próprio `CoursesList` a `/api/courses`, com cache.
     const [result, categoriesResult] = await Promise.all([
-        getCourses(toGetCoursesFilters(filters)),
+        getCourses(toGetCoursesFilters(forcedFilters)),
         getCategories(),
     ]);
 
@@ -60,7 +55,7 @@ async function CoursesCatalog({ searchParams }: CoursesPageProps) {
             <HeroCourses totalCourses={result.data?.total} />
             <CoursesList
                 categories={categoriesResult.data ?? []}
-                initialKey={catalogQueryString(filters)}
+                initialKey={catalogQueryString(forcedFilters)}
                 initialResult={result}
             />
         </div>

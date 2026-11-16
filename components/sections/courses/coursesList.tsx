@@ -13,12 +13,9 @@ import {
     ALL_CATEGORIES,
     catalogQueryString,
     COURSES_PER_PAGE,
-    DEFAULT_FORMAT,
     DEFAULT_LEVEL,
     DEFAULT_PRICE,
     DEFAULT_SORT,
-    FORMAT_LABELS,
-    FORMAT_VALUES,
     LEVEL_LABELS,
     LEVEL_VALUES,
     PRICE_LABELS,
@@ -30,7 +27,6 @@ import {
 
 type CatalogPage = Paginated<CourseWithRelations>;
 
-/** Passado isto, uma combinação já vista volta a ser pedida — em segundo plano. */
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
 const SELECT_CLASS =
@@ -40,16 +36,15 @@ function CatalogHeading() {
     return (
         <div className="space-y-1">
             <h2 className="text-2xl font-bold sm:text-3xl">
-                <span className="text-gradient">Cursos</span> disponíveis
+                <span className="text-gradient">Cursos Online</span> disponíveis
             </h2>
             <p className="text-sm text-muted-foreground">
-                Encontre o curso ideal para o seu desenvolvimento profissional.
+                Encontre o curso online ideal para o seu desenvolvimento profissional.
             </p>
         </div>
     );
 }
 
-/** Ocupa o lugar da secção enquanto a primeira resposta do catálogo não chega. */
 export function CoursesListSkeleton() {
     return (
         <section aria-busy="true" className="container-page space-y-6 py-12 md:py-16">
@@ -66,24 +61,12 @@ export function CoursesListSkeleton() {
     );
 }
 
-/**
- * Catálogo de `/cursos`. Os filtros vivem no URL, mas mudá-los já não
- * re-renderiza a página no servidor: as respostas ficam guardadas aqui, por
- * combinação de filtros, e só se pede a `/api/courses` o que ainda não se
- * viu (ou já tem mais de 5 minutos). Voltar a uma categoria, a uma página
- * anterior ou a "Limpar" é instantâneo e não toca na BD.
- *
- * A filtragem continua toda no servidor — antes de passar para o URL isto
- * era estado local e filtrava só os 12 cursos da primeira página, e o 13.º
- * curso do catálogo era inalcançável.
- */
 export default function CoursesList({
     categories,
     initialKey,
     initialResult,
 }: {
     categories: Category[];
-    /** `catalogQueryString` dos filtros com que a página foi renderizada. */
     initialKey: string;
     initialResult: ActionResponse<CatalogPage>;
 }) {
@@ -92,7 +75,6 @@ export default function CoursesList({
             search: parseAsString.withDefault(""),
             category: parseAsString.withDefault(ALL_CATEGORIES),
             level: parseAsStringLiteral(LEVEL_VALUES).withDefault(DEFAULT_LEVEL),
-            format: parseAsStringLiteral(FORMAT_VALUES).withDefault(DEFAULT_FORMAT),
             price: parseAsStringLiteral(PRICE_VALUES).withDefault(DEFAULT_PRICE),
             sort: parseAsStringLiteral(SORT_VALUES).withDefault(DEFAULT_SORT),
             page: parseAsInteger.withDefault(1),
@@ -100,11 +82,11 @@ export default function CoursesList({
         { clearOnDefault: true, scroll: false },
     );
 
-    // A chave do pedido sai do URL e não de `filters`: o nuqs actualiza
-    // `filters.search` a cada tecla mas só escreve a pesquisa no URL passado o
-    // debounce — e é isso que impede um pedido por tecla.
     const searchParams = useSearchParams();
-    const key = catalogQueryString(parseCatalogParams((name) => searchParams.get(name)));
+    const key = catalogQueryString({
+        ...parseCatalogParams((name) => searchParams.get(name)),
+        format: "ONLINE", // ✅ Forçar online
+    });
 
     const [entries, setEntries] = useState<Record<string, CatalogPage>>(() =>
         initialResult.success && initialResult.data ? { [initialKey]: initialResult.data } : {},
@@ -112,8 +94,6 @@ export default function CoursesList({
     const [failedKey, setFailedKey] = useState<string | null>(initialResult.success ? null : initialKey);
     const fetchedAt = useRef(new Map<string, number>());
 
-    // Um <Link> para `/cursos?search=…` volta a renderizar a página no
-    // servidor sem desmontar este componente: essa resposta também entra.
     const [seededKey, setSeededKey] = useState(initialKey);
     if (seededKey !== initialKey) {
         setSeededKey(initialKey);
@@ -123,8 +103,6 @@ export default function CoursesList({
         }
     }
 
-    // Um erro só vale para a tentativa em que aconteceu: ao voltar a essa
-    // combinação, mostra-se o esqueleto enquanto se tenta outra vez.
     const [previousKey, setPreviousKey] = useState(key);
     if (previousKey !== key) {
         setPreviousKey(key);
@@ -142,8 +120,6 @@ export default function CoursesList({
         const at = fetchedAt.current.get(key);
         if (hasEntry && at !== undefined && Date.now() - at < CACHE_TTL_MS) return;
 
-        // Mudar de filtro a meio cancela o pedido anterior: a resposta dele
-        // já não interessa e não pode sobrepor-se à da combinação actual.
         const controller = new AbortController();
         fetch(`/api/courses?${key}`, { signal: controller.signal })
             .then((response) => response.json() as Promise<ActionResponse<CatalogPage>>)
@@ -155,7 +131,6 @@ export default function CoursesList({
             })
             .catch(() => {
                 if (controller.signal.aborted) return;
-                // Se a renovação de uma resposta antiga falhar, fica a antiga.
                 if (!hasEntry) setFailedKey(key);
             });
         return () => controller.abort();
@@ -164,8 +139,6 @@ export default function CoursesList({
     const failed = !hasEntry && failedKey === key;
     const loading = !hasEntry && !failed;
 
-    // Enquanto a combinação nova carrega, a paginação fica onde estava em vez
-    // de desaparecer debaixo do dedo de quem acabou de carregar em "Seguinte".
     const [lastEntry, setLastEntry] = useState(entry);
     if (entry && entry !== lastEntry) setLastEntry(entry);
 
@@ -174,14 +147,12 @@ export default function CoursesList({
     const page = entry?.page ?? filters.page;
     const totalPages = failed ? 1 : (entry ?? lastEntry)?.totalPages ?? 1;
 
-    /** Mudar qualquer filtro volta à primeira página — a antiga podia já não existir. */
     const applyFilter = (values: Partial<typeof filters>) => setFilters({ ...values, page: 1 });
 
     const hasActiveFilters =
         Boolean(filters.search) ||
         filters.category !== ALL_CATEGORIES ||
         filters.level !== DEFAULT_LEVEL ||
-        filters.format !== DEFAULT_FORMAT ||
         filters.price !== DEFAULT_PRICE ||
         filters.sort !== DEFAULT_SORT;
 
@@ -202,12 +173,11 @@ export default function CoursesList({
                     <Search className="pointer-events-none absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
                     <input
                         type="search"
-                        placeholder="Pesquisar cursos..."
+                        placeholder="Pesquisar cursos online..."
                         value={filters.search}
                         onChange={(e) =>
                             setFilters(
                                 { search: e.target.value, page: 1 },
-                                // Sem isto, cada tecla era um pedido ao servidor.
                                 { limitUrlUpdates: debounce(400) },
                             )
                         }
@@ -221,6 +191,8 @@ export default function CoursesList({
                         <span className="hidden sm:inline">Filtros:</span>
                     </div>
 
+                    {/* ✅ Removido o seletor de formato */}
+
                     <select
                         aria-label="Filtrar por nível"
                         value={filters.level}
@@ -230,19 +202,6 @@ export default function CoursesList({
                         {LEVEL_VALUES.map((value) => (
                             <option key={value} value={value}>
                                 {LEVEL_LABELS[value]}
-                            </option>
-                        ))}
-                    </select>
-
-                    <select
-                        aria-label="Filtrar por modalidade"
-                        value={filters.format}
-                        onChange={(e) => applyFilter({ format: e.target.value as typeof filters.format })}
-                        className={SELECT_CLASS}
-                    >
-                        {FORMAT_VALUES.map((value) => (
-                            <option key={value} value={value}>
-                                {FORMAT_LABELS[value]}
                             </option>
                         ))}
                     </select>
@@ -281,7 +240,6 @@ export default function CoursesList({
                                     search: null,
                                     category: null,
                                     level: null,
-                                    format: null,
                                     price: null,
                                     sort: null,
                                     page: null,
@@ -302,14 +260,14 @@ export default function CoursesList({
                 ) : (
                     <p className="text-xs text-muted-foreground">
                         {total === 0 ? (
-                            "Nenhum curso encontrado"
+                            "Nenhum curso online encontrado"
                         ) : (
                             <>
                                 A mostrar{" "}
                                 <span className="font-semibold text-foreground">
                                     {from}–{from + courses.length - 1}
                                 </span>{" "}
-                                de {total} {total === 1 ? "curso" : "cursos"}
+                                de {total} {total === 1 ? "curso online" : "cursos online"}
                             </>
                         )}
                     </p>
@@ -322,7 +280,7 @@ export default function CoursesList({
                 <CourseGrid
                     courses={courses}
                     columns={4}
-                    emptyTitle={failed ? "Não foi possível carregar os cursos" : "Nenhum curso encontrado"}
+                    emptyTitle={failed ? "Não foi possível carregar os cursos" : "Nenhum curso online encontrado"}
                     emptyDescription={
                         failed
                             ? "Houve um problema a falar com o servidor. Tente novamente dentro de instantes."
