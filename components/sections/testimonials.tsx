@@ -7,40 +7,47 @@ import { TESTIMONIALS_DATA } from "@/lib/testimonial";
 
 export function Testimonials() {
     const trackRef = useRef<HTMLDivElement>(null);
-    const [podeVoltar, setPodeVoltar] = useState(false);
-    const [podeAvancar, setPodeAvancar] = useState(true);
     const [activeIndex, setActiveIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 
     // Duplicamos os dados para criar o efeito infinito
     const infiniteData = [...TESTIMONIALS_DATA, ...TESTIMONIALS_DATA, ...TESTIMONIALS_DATA];
 
-    const atualizarEstado = useCallback(() => {
+    // Calcula qual depoimento deve ficar destacado, com base na posição do scroll
+    const atualizarAtivo = useCallback(() => {
         const el = trackRef.current;
         if (!el) return;
-        const max = el.scrollWidth - el.clientWidth;
-        setPodeVoltar(el.scrollLeft > 4);
-        setPodeAvancar(el.scrollLeft < max - 4);
+
+        const card = el.firstElementChild as HTMLElement | null;
+        if (!card) return;
+
+        const passo = card.offsetWidth + 16;
+        // Em desktop mostram-se vários cards, por isso destacamos o segundo visível.
+        // Em mobile só se vê um card, por isso destacamos o primeiro.
+        const emDesktop = window.matchMedia("(min-width: 1024px)").matches;
+        const posicao = Math.round(el.scrollLeft / passo) + (emDesktop ? 1 : 0);
+
+        setActiveIndex(posicao % TESTIMONIALS_DATA.length);
     }, []);
 
+    // Atualiza no arranque e sempre que a janela muda de tamanho
     useEffect(() => {
-        atualizarEstado();
-        window.addEventListener("resize", atualizarEstado);
-        return () => window.removeEventListener("resize", atualizarEstado);
-    }, [atualizarEstado]);
+        atualizarAtivo();
+        window.addEventListener("resize", atualizarAtivo);
+        return () => window.removeEventListener("resize", atualizarAtivo);
+    }, [atualizarAtivo]);
 
     // Função para avançar um card
     const avancar = useCallback(() => {
         const el = trackRef.current;
         if (!el) return;
-        
+
         const card = el.firstElementChild as HTMLElement | null;
-        const passo = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
-        
+        const passo = card ? card.offsetWidth + 16 : el.clientWidth / 4;
+
         // Se estivermos perto do fim da lista duplicada, voltamos ao início original
         const maxScroll = el.scrollWidth - el.clientWidth;
         if (el.scrollLeft >= maxScroll - 10) {
-            // Reseta para o início da segunda cópia (onde o loop é idêntico)
             el.scrollTo({ left: TESTIMONIALS_DATA.length * passo, behavior: "instant" });
             setTimeout(() => {
                 el.scrollBy({ left: passo, behavior: "smooth" });
@@ -48,35 +55,34 @@ export function Testimonials() {
         } else {
             el.scrollBy({ left: passo, behavior: "smooth" });
         }
-
-        // Atualiza o visual do card ativo (apenas visual, o scroll real é independente)
-        setActiveIndex((prev) => (prev + 1) % TESTIMONIALS_DATA.length);
     }, []);
 
+    // Função para retroceder
     const retroceder = () => {
         const el = trackRef.current;
         if (!el) return;
+
         const card = el.firstElementChild as HTMLElement | null;
-        const passo = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
+        const passo = card ? card.offsetWidth + 16 : el.clientWidth / 4;
+
         el.scrollBy({ left: -passo, behavior: "smooth" });
-        setActiveIndex((prev) => (prev - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length);
     };
 
-    // Auto-play
+    // Autoplay (pausa ao passar o rato)
     useEffect(() => {
-        if (isHovered) return; // Pausa ao passar o rato
+        if (isHovered) return;
 
         const interval = setInterval(() => {
             avancar();
-        }, 4000); // Passa a cada 4 segundos
+        }, 4000);
 
         return () => clearInterval(interval);
     }, [isHovered, avancar]);
 
     return (
-        <section className="bg-muted/40 py-20">
-            <div className="container-page space-y-10">
-                
+        <section className="bg-muted/40 py-20 overflow-hidden">
+            <div className="container-page space-y-10 w-full">
+
                 {/* Cabeçalho + Vídeo */}
                 <div className="grid items-center gap-10 lg:grid-cols-2">
                     <div>
@@ -87,7 +93,7 @@ export function Testimonials() {
                             O que os nossos <span className="text-gradient">alunos dizem</span>
                         </h2>
                         <p data-split className="py-2 text-sm text-midnight">
-                           Conheça a experiência de quem escolheu a Unitec Academy para desenvolver novas competências.
+                            Conheça a experiência de quem escolheu a Unitec Academy para desenvolver novas competências.
                         </p>
 
                         {/* Setas */}
@@ -121,29 +127,31 @@ export function Testimonials() {
                     </div>
                 </div>
 
-                {/* Carrossel Infinito */}
+                {/* CARROSSEL ÚNICO (Responsivo) */}
                 <div
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
+                    className="w-full relative"
                 >
                     <div
                         ref={trackRef}
-                        onScroll={atualizarEstado}
-                        data-reveal-group
-                        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        onScroll={atualizarAtivo}
+                        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [scroll-padding-inline:1rem]"
                     >
                         {infiniteData.map((t, i) => {
-                            // O card em destaque visual (azul) segue o activeIndex
-                            const isActive = (i % TESTIMONIALS_DATA.length) === activeIndex;
+                            // O index real, ignorando as duplicações
+                            const realIndex = i % TESTIMONIALS_DATA.length;
+                            // Apenas o "activeIndex" fica com o destaque azul
+                            const isActive = realIndex === activeIndex;
 
                             return (
                                 <figure
                                     key={`${t.name}-${i}`}
-                                    className={`group flex w-[300px] shrink-0 snap-start flex-col justify-between rounded-2xl p-6 text-left transition-colors duration-300 sm:w-[360px] ${
+                                    className={`group flex w-full lg:w-[calc((100%-3rem)/4)] shrink-0 snap-start flex-col justify-between rounded-2xl p-6 text-left transition-colors duration-300 border ${
                                         isActive
-                                            ? "bg-[#0A1550] text-white border-[#0A1550] shadow-lg scale-[1.02]"
-                                            : "bg-white text-slate-800 border-border/60 hover:border-primary/30 scale-100"
-                                    } border`}
+                                            ? "bg-[#0A1550] text-white border-[#0A1550] shadow-lg"
+                                            : "bg-white text-slate-800 border-border/60 hover:border-primary/30"
+                                    }`}
                                 >
                                     <div>
                                         <div className="flex items-center gap-4">
@@ -184,6 +192,7 @@ export function Testimonials() {
                         })}
                     </div>
                 </div>
+
             </div>
         </section>
     );

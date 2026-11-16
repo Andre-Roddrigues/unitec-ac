@@ -10,7 +10,7 @@ import { VideoModal, PlayButton } from "./VideoModal";
 const indicadores = [
   { icon: CircleUser, label: ["Cursos próprios", "e de parceiros"] },
   { icon: Users, label: ["Formadores", "especializados"] },
-  { icon: ShieldCheck, label: ["Certificado", "reconhecido"] },
+  { icon: ShieldCheck, label: ["Certificado de", "conclusão"] },
 ];
 
 export function Hero() {

@@ -8,14 +8,9 @@ import {
   MapPin,
   Target,
   TrendingUp,
+  MonitorPlay, // ✅ Ícone para cursos online
 } from "lucide-react";
 
-/*
- * Imagem do Unsplash. Substitui o ID pela foto escolhida em
- * https://unsplash.com (formato images.unsplash.com/photo-<ID>).
- * Para usar next/image, adiciona "images.unsplash.com" a
- * `images.remotePatterns` no next.config.js.
- */
 const UNSPLASH = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
 
@@ -33,6 +28,12 @@ const modalidades = [
     descricao:
       "Os colaboradores deslocam-se a um dos nossos espaços, com equipamento e salas preparados para formação prática.",
     Icon: MapPin,
+  },
+  {
+    titulo: "Cursos Online",
+    descricao:
+      "Formação 100% digital e flexível. A sua equipa aprende ao seu próprio ritmo, com acesso a videoaulas e materiais interativos.",
+    Icon: MonitorPlay,
   },
 ];
 
@@ -56,9 +57,9 @@ const beneficios = [
 
 const pontos = [
   "Programas adaptados às necessidades da organização.",
-  "Formação nas instalações da empresa ou da Unitec Academy",
-  "Planeamento de horários e cargas horárias",
-  "Acompanhamento e avaliação da formação",
+  "Formação nas instalações da empresa, da Unitec ou online.",
+  "Planeamento de horários e cargas horárias flexíveis.",
+  "Acompanhamento e avaliação da formação.",
 ];
 
 export function UnitecBusiness() {
@@ -66,8 +67,7 @@ export function UnitecBusiness() {
     <section className="bg-background py-16 md:py-20">
       <div className="container-page">
         {/* Cabeçalho */}
-        {/* Cabeçalho */}
-        <div className="grid bg-darkBlue overflow-hidden rounded-3xl bg-card shadow-elevated lg:grid-cols-2">
+        <div className="grid bg-darkBlue overflow-hidden rounded-3xl shadow-elevated lg:grid-cols-2">
           {/* Texto */}
           <div className="flex flex-col justify-center px-6 py-12 md:px-10 lg:px-12">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-background">
@@ -100,7 +100,7 @@ export function UnitecBusiness() {
             </div>
           </div>
 
-          {/* Imagem — preenche de ponta a ponta a coluna que ocupa */}
+          {/* Imagem */}
           <div className="relative min-h-[300px] lg:min-h-[480px]">
             <Image
               src="/images/small-business-mentoring.png"
@@ -117,11 +117,11 @@ export function UnitecBusiness() {
           <h3 className="text-xl font-bold text-primary md:text-2xl">
             Escolha como quer formar a sua equipa
           </h3>
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {modalidades.map(({ titulo, descricao, Icon }) => (
               <div
                 key={titulo}
-                className="flex gap-5 rounded-2xl border border-border bg-card p-6 shadow-card"
+                className="flex gap-5 rounded-2xl border border-border bg-card p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
                   <Icon className="h-6 w-6" />

@@ -40,7 +40,7 @@ export function BannerLanguageCenter() {
         {/* Conteúdo — o padding-inline controla o afastamento do texto à esquerda */}
         <div className="relative flex min-h-[360px] flex-col justify-center py-12 pl-6 pr-6 sm:pl-10 md:min-h-[400px] md:pl-16 md:pr-12 lg:pl-24 lg:pr-16 xl:pl-32 xl:pr-20">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/90">
-            Unitec Language Center
+            Unitec Language
           </p>
 
           <h2 className="mt-3 max-w-lg text-3xl font-extrabold leading-[1.1] md:text-4xl lg:text-5xl">

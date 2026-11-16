@@ -21,9 +21,9 @@ export function BannerEquipa() {
           {/* Texto */}
           <div className="flex flex-col justify-center px-6 py-12 md:px-12 lg:px-16">
 
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-primary md:text-4xl">
-              Partilhe o seu conhecimento. Chegue a mais pessoas.
-            </h2>
+           <h2 className="mt-3 text-3xl font-extrabold leading-tight text-primary md:text-4xl">
+  Partilhe o seu conhecimento. <br className="hidden sm:block" /> Chegue a mais pessoas.
+</h2>
 
             <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
               É formador ou representa uma instituição de formação? Publique os seus cursos na Unitec Academy e ajude mais pessoas a desenvolver competências e a descobrir novas oportunidades

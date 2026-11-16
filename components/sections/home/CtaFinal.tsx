@@ -13,7 +13,7 @@ export function CtaFinal() {
               Faça a sua escolha hoje e transforme o seu futuro
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-primary-foreground/85 md:text-base">
-              Invista no seu pontencial, desenvolva novas competências e prepare-se para novas oportunidades.
+              Invista no seu potencial, desenvolva novas competências e prepare-se para novas oportunidades.
             </p>
           </div>
 

@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2, GraduationCap } from "lucide-react";
 
 const garantias = [
   "Inscrição simples e rápida",
-  "Certificado reconhecido",
+  "Certificado de conclusão",
   "Acompanhamento por formadores",
 ];
 
