@@ -10,7 +10,7 @@ export function NavbarLogo() {
 
   return (
     <Link
-      href="/"
+      href={isLanguage ? "/language" : "/"}
       aria-label="Página inicial"
       className="flex items-center justify-center transition-opacity hover:opacity-85"
     >

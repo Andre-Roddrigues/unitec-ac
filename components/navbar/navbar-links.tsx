@@ -4,8 +4,40 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { isNavLinkActive, navLinks } from "@/lib/nav-links";
 import { cn } from "@/lib/utils";
+
+interface NavLink {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+}
+
+function isNavLinkActive(href: string, pathname: string): boolean {
+  const base = href.split("#")[0] || "/";
+  return base === "/" ? pathname === "/" : pathname.startsWith(base);
+}
+
+// ✅ Lista base (sem Academy/Language)
+const baseNavLinks: NavLink[] = [
+  { label: "Início", href: "/" },
+  {
+    label: "Cursos",
+    href: "/cursos",
+    children: [
+      { label: "Online", href: "/cursos" },
+      { label: "Presencial", href: "/presenciais" },
+    ],
+  },
+  { label: "Business", href: "https://business.unitec.co.mz" },
+  {
+    label: "Suporte",
+    href: "/",
+    children: [
+      { label: "FAQ", href: "https://unitec.co.mz/faq" },
+      { label: "Assistência", href: "https://unitec.co.mz/assistencia" },
+    ],
+  },
+];
 
 export function NavbarLinks() {
   const pathname = usePathname();
@@ -41,14 +73,25 @@ export function NavbarLinks() {
     closeTimer.current = setTimeout(() => setOpenHref(null), 120);
   };
 
-  // Lógica para trocar o link "Language" por "Academy"
-  const displayedLinks = navLinks.map((link) => {
-    // Se estamos em /language e o link atual é o da Language...
-    if (isLanguagePage && link.label.toLowerCase().includes("language")) {
-      return { ...link, label: "Academy", href: "/" };
-    }
-    return link;
-  });
+  // ✅ Link dinâmico
+  const dynamicLink: NavLink = isLanguagePage
+    ? { label: "Academy", href: "/" }
+    : { label: "Language", href: "/language" };
+
+  // ✅ Encontrar o índice de "Cursos"
+  const cursosIndex = baseNavLinks.findIndex((link) =>
+    link.label.toLowerCase().includes("cursos")
+  );
+
+  // ✅ Inserir o link dinâmico depois de "Cursos"
+  const displayedLinks: NavLink[] =
+    cursosIndex !== -1
+      ? [
+          ...baseNavLinks.slice(0, cursosIndex + 1),
+          dynamicLink,
+          ...baseNavLinks.slice(cursosIndex + 1),
+        ]
+      : [...baseNavLinks, dynamicLink];
 
   return (
     <nav aria-label="Navegação principal" className="hidden md:block">
@@ -58,9 +101,12 @@ export function NavbarLinks() {
           const hasChildren = Boolean(link.children?.length);
           const isOpen = openHref === link.href;
 
+          // ✅ Chave única para evitar problemas de re-renderização
+          const uniqueKey = `${link.label}-${link.href}`;
+
           return (
             <li
-              key={link.href}
+              key={uniqueKey}
               className="relative"
               onMouseEnter={hasChildren ? () => open(link.href) : undefined}
               onMouseLeave={hasChildren ? scheduleClose : undefined}
@@ -71,7 +117,7 @@ export function NavbarLinks() {
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "text-sm font-medium transition-colors font-bold",
-                    isActive ? "text-darkBlue" : "text- hover:text-darkBlue/70",
+                    isActive ? "text-darkBlue" : "text-slate-700 hover:text-darkBlue/70"
                   )}
                 >
                   {link.label}
@@ -100,7 +146,7 @@ export function NavbarLinks() {
                 >
                   {link.children!.map((child) => (
                     <Link
-                      key={child.href}
+                      key={`${child.label}-${child.href}`}
                       href={child.href}
                       role="menuitem"
                       onClick={() => setOpenHref(null)}
