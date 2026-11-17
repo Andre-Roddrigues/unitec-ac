@@ -16,7 +16,7 @@ const modalidades = [
     titulo: "Cursos Presenciais",
     descricao:
       "Aprenda na prática, desenvolva competências profissionais e prepare-se para os desafios reais do mercado de trabalho.",
-    href: "/cursos?modalidade=presencial",
+    href: "/presencial",
     imagem: "/brand/presencial.jpg",
     alt: "Formandos a trabalhar em grupo numa sala de formação",
     Icon: Users,
@@ -25,7 +25,7 @@ const modalidades = [
   {
     titulo: "Cursos Online",
     descricao: "Aprenda a partir de qualquer lugar, desenvolva novas competências e invista no seu futuro com mais flexibilidade.",
-    href: "/cursos?modalidade=online",
+    href: "/cursos",
     imagem: "/brand/online.jpg",
     alt: "Estudante a usar portátil e auscultadores",
     Icon: Monitor,

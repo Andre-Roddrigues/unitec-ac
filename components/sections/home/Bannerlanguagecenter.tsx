@@ -44,7 +44,9 @@ export function BannerLanguageCenter() {
           </p>
 
           <h2 className="mt-3 max-w-lg text-3xl font-extrabold leading-[1.1] md:text-4xl lg:text-5xl">
-            Novos idiomas. Novas oportunidades.
+            Novos idiomas.
+            <br className="hidden sm:block" />
+            Novas oportunidades.
           </h2>
 
           <p className="mt-4 max-w-md text-sm text-primary-foreground/85 md:text-base">

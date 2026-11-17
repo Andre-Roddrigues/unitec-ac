@@ -176,7 +176,7 @@ export function Footer() {
                   <Image
                     src={method.src}
                     alt={method.alt}
-                    width={60}
+                    width={90}
                     height={20}
                     className="object-contain h-full w-full"
                   />

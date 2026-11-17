@@ -30,7 +30,7 @@ const modalidades = [
     Icon: MapPin,
   },
   {
-    titulo: "Cursos Online",
+    titulo: "Online",
     descricao:
       "Formação 100% digital e flexível. A sua equipa aprende ao seu próprio ritmo, com acesso a videoaulas e materiais interativos.",
     Icon: MonitorPlay,

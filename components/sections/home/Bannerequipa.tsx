@@ -41,7 +41,7 @@ export function BannerEquipa() {
           {/* Imagem */}
           <div className="relative min-h-[260px] md:min-h-[360px]">
             <Image
-              src="/images/be-a-teacher.jpg"
+              src="/images/be-a-teacher.png"
               alt="Equipa de formadores a colaborar numa sala de formação"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"

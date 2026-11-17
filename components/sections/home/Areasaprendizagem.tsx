@@ -30,7 +30,7 @@ const areas: Area[] = [
   { nome: "Administração e Gestão", href: "/cursos?area=administracao", Icon: Briefcase, tom: "bg-chart-1/10 text-chart-1" },
   { nome: "Contabilidade e Finanças", href: "/cursos?area=contabilidade", Icon: Calculator, tom: "bg-chart-2/10 text-chart-2" },
   { nome: "Informática e Tecnologia", href: "/cursos?area=informatica", Icon: Laptop, tom: "bg-chart-1/10 text-chart-1" },
-  { nome: "Idiomas", href: "/idiomas", Icon: Languages, tom: "bg-chart-5/10 text-chart-5" },
+  { nome: "Idiomas", href: "/language", Icon: Languages, tom: "bg-chart-5/10 text-chart-5" },
   { nome: "Marketing e Comunicação", href: "/cursos?area=marketing", Icon: Megaphone, tom: "bg-chart-5/10 text-chart-5" },
   { nome: "Engenharia e Construção", href: "/cursos?area=engenharia", Icon: HardHat, tom: "bg-chart-2/10 text-chart-2" },
   { nome: "Saúde e Segurança", href: "/cursos?area=saude", Icon: HeartPulse, tom: "bg-chart-4/10 text-chart-4" },

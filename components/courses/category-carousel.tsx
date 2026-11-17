@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation"; // ✅ Importação adicionada
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ALL_CATEGORIES } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
@@ -18,6 +19,21 @@ export function CategoryCarousel({
     const trackRef = useRef<HTMLDivElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
+    
+    const pathname = usePathname(); // ✅ Obtém a rota atual
+    const isLanguagePage = pathname?.startsWith("/language");
+
+    // ✅ Filtra categorias que contenham "idioma" (case-insensitive) a menos que esteja em /language
+    const filteredCategories = categories.filter((category) => {
+        const isIdioma = 
+            category.name.toLowerCase().includes("idioma") || 
+            category.slug.toLowerCase().includes("idioma");
+        
+        if (isIdioma && !isLanguagePage) {
+            return false; // Esconde
+        }
+        return true; // Mostra
+    });
 
     const updateScrollState = useCallback(() => {
         const el = trackRef.current;
@@ -37,7 +53,7 @@ export function CategoryCarousel({
             el.removeEventListener("scroll", updateScrollState);
             ro.disconnect();
         };
-    }, [updateScrollState, categories.length]);
+    }, [updateScrollState, filteredCategories.length]); // ✅ Usar o length filtrado
 
     const scrollBy = (dir: 1 | -1) => {
         trackRef.current?.scrollBy({ left: dir * 240, behavior: "smooth" });
@@ -69,7 +85,8 @@ export function CategoryCarousel({
                 >
                     Todos
                 </CategoryPill>
-                {categories.map((category) => (
+                {/* ✅ Usar a lista filtrada aqui */}
+                {filteredCategories.map((category) => (
                     <CategoryPill
                         key={category.id}
                         active={active === category.id}
