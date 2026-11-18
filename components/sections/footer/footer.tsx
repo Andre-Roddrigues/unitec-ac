@@ -273,22 +273,22 @@ export function Footer() {
             </div>
 
             <div
-              ref={socialScrollRef}
-              className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory"
-            >
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="flex h-10 w-10 shrink-0 snap-start items-center justify-center rounded-lg border border-white/15 text-white/80 transition-all duration-300 hover:border-secondary hover:bg-secondary hover:text-white"
-                >
-                  <social.icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
+  ref={socialScrollRef}
+  className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory"
+>
+  {socials.map((social) => (
+    <a
+      key={social.label}
+      href={social.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={social.label}
+      className="flex h-10 w-10 shrink-0 snap-start items-center justify-center rounded-lg border border-white/15 text-white/80 transition-all duration-300 hover:border-secondary hover:bg-secondary hover:text-white"
+    >
+      <social.icon className="h-4 w-4" />
+    </a>
+  ))}
+</div>
           </div>
         </div>
 

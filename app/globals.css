@@ -277,3 +277,11 @@
     --tw-ring-shadow: 0 0 #0000 !important;
   }
 }
+/* Esconde a barra de scroll mantendo o deslize */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE e Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari e Opera */
+}
