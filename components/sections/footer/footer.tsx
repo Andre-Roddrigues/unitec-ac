@@ -49,7 +49,21 @@ function TikTokIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+function YouTubeIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z" />
+    </svg>
+  );
+}
 
+function XIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+    </svg>
+  );
+}
 // ---------------------------------------------------------------------------
 // Dados
 // ---------------------------------------------------------------------------
@@ -90,10 +104,12 @@ const contacts = [
 ];
 
 const socials = [
-  { icon: FacebookIcon, label: "Facebook", href: "https://facebook.com/unitec.mentor" },
+  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/unitec.academy/" },
   { icon: InstagramIcon, label: "Instagram", href: "https://instagram.com/unitec.mentor" },
   { icon: TikTokIcon, label: "TikTok", href: "https://tiktok.com/@unitec.mentor" },
   { icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/company/unitecmentor/" },
+    { icon: YouTubeIcon,   label: "YouTube",   href: "https://www.youtube.com/@unitec.academy" },
+  { icon: XIcon,         label: "X (Twitter)", href: "https://x.com/OnlineUnitec" },
 ];
 
 const paymentLogos = [
