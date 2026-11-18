@@ -25,7 +25,7 @@ const baseNavLinks: NavLink[] = [
     href: "/cursos",
     children: [
       { label: "Online", href: "/cursos" },
-      { label: "Presencial", href: "/presenciais" },
+      { label: "Presenciais", href: "/presenciais" },
     ],
   },
   { label: "Business", href: "https://business.unitec.co.mz" },

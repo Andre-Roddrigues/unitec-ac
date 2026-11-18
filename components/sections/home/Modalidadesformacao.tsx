@@ -2,12 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Monitor, Users } from "lucide-react";
 
-/*
- * Imagens do Unsplash. Substitui os IDs pelas fotos escolhidas em
- * https://unsplash.com (o formato é images.unsplash.com/photo-<ID>).
- * Para usar next/image, adiciona "images.unsplash.com" a
- * `images.remotePatterns` no next.config.js.
- */
 const UNSPLASH = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=80`;
 
@@ -54,7 +48,7 @@ export function ModalidadesFormacao() {
           {modalidades.map(({ titulo, descricao, href, imagem, alt, Icon, iconBg }) => (
             <article
               key={titulo}
-              className="group overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-elevated"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-elevated"
             >
               <div className="relative h-56 w-full overflow-hidden md:h-64">
                 <Image
@@ -79,9 +73,10 @@ export function ModalidadesFormacao() {
                   {descricao}
                 </p>
 
+                {/* O Link agora cobre todo o cartão com o 'after:absolute after:inset-0' */}
                 <Link
                   href={href}
-                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary transition-colors hover:text-primary"
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary transition-colors hover:text-primary after:absolute after:inset-0 after:z-10"
                 >
                   Explorar cursos
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
