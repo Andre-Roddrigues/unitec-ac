@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image"; // ✅ Importação do Image
 import {
     ChevronLeft,
     ChevronRight,
@@ -40,7 +41,7 @@ type ViewMode = "grid" | "list";
 
 const CACHE_TTL_MS = 5 * 60 * 1000;
 const VIEW_STORAGE_KEY = "unitec:courses-online:view";
-const ONLINE_FORMAT = "ONLINE" as const; // ✅ Força online
+const ONLINE_FORMAT = "ONLINE" as const;
 
 const SELECT_CLASS =
     "h-9 w-full cursor-pointer appearance-none rounded-lg border border-border bg-muted/20 px-3 pr-7 text-xs font-medium text-foreground outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20";
@@ -106,7 +107,6 @@ export default function CoursesList({
     const searchParams = useSearchParams();
     const key = (() => {
         const parsed = parseCatalogParams((name) => searchParams.get(name));
-        // ✅ Força o formato ONLINE na chamada à API
         return catalogQueryString({ ...parsed, format: ONLINE_FORMAT });
     })();
 
@@ -169,7 +169,6 @@ export default function CoursesList({
     const page = entry?.page ?? filters.page;
     const totalPages = failed ? 1 : (entry ?? lastEntry)?.totalPages ?? 1;
 
-    // ---- vista grelha/lista ----
     const [view, setView] = useState<ViewMode>("grid");
     useEffect(() => {
         const saved = localStorage.getItem(VIEW_STORAGE_KEY);
@@ -379,16 +378,24 @@ export default function CoursesList({
                                         : "Nenhum curso online encontrado."}
                                 </div>
                             ) : (
-                                // Como não tens um `OnlineCourseListRow` específico, 
-                                // usei um layout simples para a lista. Se tiveres um, basta substituir.
                                 courses.map((course) => (
                                     <div key={course.id} className="flex gap-4 rounded-xl border border-border p-4 bg-card shadow-sm hover:shadow-md transition-shadow">
+                                        {/* ✅ CORREÇÃO: Uso do course.cover com fallback */}
                                         <div className="w-32 h-24 bg-muted rounded-lg shrink-0 overflow-hidden relative">
-                                            {course.coverImage && (
-                                                <img src={course.coverImage} alt={course.title} className="object-cover w-full h-full" />
+                                            {course.cover?.[0]?.imageUrl ? (
+                                                <Image 
+                                                    src={course.cover[0].imageUrl} 
+                                                    alt={course.title} 
+                                                    fill 
+                                                    className="object-cover" 
+                                                />
+                                            ) : (
+                                                <div className="flex items-center justify-center w-full h-full text-muted-foreground text-[10px] text-center p-2">
+                                                    Sem imagem
+                                                </div>
                                             )}
                                         </div>
-                                        <div>
+                                        <div className="flex flex-col justify-center">
                                             <h3 className="font-bold text-foreground">{course.title}</h3>
                                             <p className="text-xs text-muted-foreground line-clamp-2 mt-1">{course.description}</p>
                                         </div>
