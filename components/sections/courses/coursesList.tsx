@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Image from "next/image"; // ✅ Importação do Image
+import Image from "next/image"; 
+import Link from "next/link";
 import {
     ChevronLeft,
     ChevronRight,
@@ -12,6 +13,8 @@ import {
     LayoutGrid,
     List,
     Monitor,
+    BookOpen,
+    Clock,
 } from "lucide-react";
 import { debounce, parseAsInteger, parseAsString, parseAsStringLiteral, useQueryStates } from "nuqs";
 import { CourseGrid, CourseGridSkeleton } from "@/components/courses/course-grid";
@@ -350,7 +353,7 @@ export default function CoursesList({
                         ) : (
                             <div className="space-y-3">
                                 {Array.from({ length: 6 }, (_, i) => (
-                                    <Skeleton key={i} className="h-24 w-full rounded-xl" />
+                                    <Skeleton key={i} className="h-28 w-full rounded-xl" />
                                 ))}
                             </div>
                         )
@@ -379,15 +382,19 @@ export default function CoursesList({
                                 </div>
                             ) : (
                                 courses.map((course) => (
-                                    <div key={course.id} className="flex gap-4 rounded-xl border border-border p-4 bg-card shadow-sm hover:shadow-md transition-shadow">
-                                        {/* ✅ CORREÇÃO: Uso do course.cover com fallback */}
-                                        <div className="w-32 h-24 bg-muted rounded-lg shrink-0 overflow-hidden relative">
-                                            {course.cover?.[0]?.imageUrl ? (
+                                    <Link 
+                                        key={course.id} 
+                                        href={`/cursos/${course.slug}`}
+                                        className="group flex flex-col sm:flex-row gap-4 rounded-xl border border-border p-4 bg-card shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
+                                    >
+                                        {/* ✅ CORREÇÃO: Uso do course.thumbnailUrl */}
+                                        <div className="w-full sm:w-48 h-32 sm:h-28 bg-muted rounded-lg shrink-0 overflow-hidden relative">
+                                            {course.thumbnailUrl ? (
                                                 <Image 
-                                                    src={course.cover[0].imageUrl} 
+                                                    src={course.thumbnailUrl} 
                                                     alt={course.title} 
                                                     fill 
-                                                    className="object-cover" 
+                                                    className="object-cover transition-transform duration-300 group-hover:scale-105" 
                                                 />
                                             ) : (
                                                 <div className="flex items-center justify-center w-full h-full text-muted-foreground text-[10px] text-center p-2">
@@ -395,11 +402,22 @@ export default function CoursesList({
                                                 </div>
                                             )}
                                         </div>
-                                        <div className="flex flex-col justify-center">
-                                            <h3 className="font-bold text-foreground">{course.title}</h3>
+                                        <div className="flex flex-col flex-1 justify-center py-1">
+                                            <h3 className="font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">{course.title}</h3>
                                             <p className="text-xs text-muted-foreground line-clamp-2 mt-1">{course.description}</p>
+                                            
+                                            <div className="flex items-center gap-4 mt-3 text-[11px] text-muted-foreground font-medium">
+                                                <div className="flex items-center gap-1.5">
+                                                    <BookOpen className="size-3.5" />
+                                                    {course.category?.name || "Geral"}
+                                                </div>
+                                                <div className="flex items-center gap-1.5">
+                                                    <Clock className="size-3.5" />
+                                                    {course.durationMinutes ? `${course.durationMinutes} min` : "N/A"}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 ))
                             )}
                         </div>
