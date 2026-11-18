@@ -16,7 +16,7 @@ const modalidades = [
     titulo: "Cursos Presenciais",
     descricao:
       "Aprenda na prática, desenvolva competências profissionais e prepare-se para os desafios reais do mercado de trabalho.",
-    href: "/presencial",
+    href: "/presenciais",
     imagem: "/brand/presencial.jpg",
     alt: "Formandos a trabalhar em grupo numa sala de formação",
     Icon: Users,
