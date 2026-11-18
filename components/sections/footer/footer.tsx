@@ -105,11 +105,11 @@ const contacts = [
 
 const socials = [
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/unitec.academy/" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://instagram.com/unitec.mentor" },
-  { icon: TikTokIcon, label: "TikTok", href: "https://tiktok.com/@unitec.mentor" },
-  { icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/company/unitecmentor/" },
-    { icon: YouTubeIcon,   label: "YouTube",   href: "https://www.youtube.com/@unitec.academy" },
-  { icon: XIcon,         label: "X (Twitter)", href: "https://x.com/OnlineUnitec" },
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/unitec.academy" },
+  { icon: TikTokIcon, label: "TikTok", href: "https://tiktok.com/@unitec.academy" },
+  { icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/company/unitec-academy/" },
+  { icon: YouTubeIcon, label: "YouTube", href: "https://www.youtube.com/@unitec.academy" },
+  { icon: XIcon, label: "X (Twitter)", href: "https://x.com/OnlineUnitec" },
 ];
 
 const paymentLogos = [
@@ -134,7 +134,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   const socialScrollRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname(); // ✅ Hook para detetar a página
-  
+
   // ✅ Verifica se está na página de language
   const isLanguagePage = pathname?.startsWith("/language");
 
@@ -273,22 +273,22 @@ export function Footer() {
             </div>
 
             <div
-  ref={socialScrollRef}
-  className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory"
->
-  {socials.map((social) => (
-    <a
-      key={social.label}
-      href={social.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={social.label}
-      className="flex h-10 w-10 shrink-0 snap-start items-center justify-center rounded-lg border border-white/15 text-white/80 transition-all duration-300 hover:border-secondary hover:bg-secondary hover:text-white"
-    >
-      <social.icon className="h-4 w-4" />
-    </a>
-  ))}
-</div>
+              ref={socialScrollRef}
+              className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory"
+            >
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="flex h-10 w-10 shrink-0 snap-start items-center justify-center rounded-lg border border-white/15 text-white/80 transition-all duration-300 hover:border-secondary hover:bg-secondary hover:text-white"
+                >
+                  <social.icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -297,17 +297,23 @@ export function Footer() {
           <div className="flex flex-col xl:flex-row items-center justify-between gap-8 mb-6">
             {/* Esquerda: marca */}
             <div className="flex items-center gap-4 w-full xl:w-auto justify-center xl:justify-start">
-              <Image
-                // ✅ Troca a imagem menor com base na rota
-                src={isLanguagePage ? "/images/unitecfooter.png" : "/images/unitecfooter.png"}
-                alt={isLanguagePage ? "Unitec Language" : "Unitec Academy"}
-                width={150}
-                height={150}
-                className="h-10 w-auto"
-              />
+              <Link
+                href="https://unitec.co.mz"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visitar o site principal da Unitec"
+                className="transition-opacity hover:opacity-80"
+              >
+                <Image
+                  src={isLanguagePage ? "/images/unitecfooter.png" : "/images/unitecfooter.png"}
+                  alt={isLanguagePage ? "Unitec Academy" : "Unitec Academy"}
+                  width={150}
+                  height={150}
+                  className="h-10 w-auto"
+                />
+              </Link>
               <span className="hidden h-6 w-px bg-white/15 sm:block" />
               <span className="hidden text-xs font-semibold uppercase tracking-[0.2em] text-white/60 sm:block">
-                {/* ✅ Troca o slogan com base na rota */}
                 {isLanguagePage ? "Conectando o presente ao futuro" : "Conectando o presente ao futuro"}
               </span>
             </div>
