@@ -109,7 +109,7 @@ const socials = [
   { icon: TikTokIcon, label: "TikTok", href: "https://tiktok.com/@unitec.academy" },
   { icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/company/unitec-academy/" },
   { icon: YouTubeIcon, label: "YouTube", href: "https://www.youtube.com/@unitec.academy" },
-  { icon: XIcon, label: "X (Twitter)", href: "https://x.com/OnlineUnitec" },
+  { icon: XIcon, label: "X (Twitter)", href: "https://x.com/unitec_academy" },
 ];
 
 const paymentLogos = [
